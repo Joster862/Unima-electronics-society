@@ -52,15 +52,38 @@
     cursor: pointer;
     color: #333;
     user-select: none;
+    position:fixed;
+    top:20px;
+    right:20px;
+    z-index:1100;
 }
 .nav-menu {
-    display: none;
+    display: flex;
     list-style: none;
     background:#fff;
-    padding: 10px;
+    position:fixed;
+    top:0;
+    left:-100%;
+    width:100%;
+    height:100%;
+    justify-content: center;
+    align-items: center;
+    transition: 0.4s ease;
+    z-index:1000;
+    padding-top: 80px;
+}
+.nav-menu ul {
+    list-style: none;
+    text-align: center;
+    padding: 0;
+}
+.nav-menu li{
+    font-size: 18px;
+    margin:10px 0;
 }
 .nav-menu.active {
     display: block;
+    left: 0;
 }
 /*SLIDESHOW*/
 .slideshow{
