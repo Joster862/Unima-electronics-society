@@ -12,23 +12,33 @@
     padding: 20px 30px;
     background-color: #fff;
     color: #fff;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    height: 90px;
+    
+    
+    
+
 }
 .nav-text {
-    font-family: "Poppins",Arial, sans-serif;
+    font-family: 'poppins', sans-serif;
     line-height: 1.3;
     text-transform: uppercase;
   
 }
 .uni {
     color:#8f6a06; 
-    font-size: 18px;
+    font-size: 14px;
     font-weight: 650;
     letter-spacing: 1.5px;    
 
 }
 .society{
     color:#280550; 
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 800;
     letter-spacing: 1px;
     
@@ -52,25 +62,28 @@
     cursor: pointer;
     color: #333;
     user-select: none;
-    position:fixed;
-    top:20px;
-    right:20px;
-    z-index:1100;
+    position: absolute;
+    right: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1100;
 }
 .nav-menu {
     display: none;
     list-style: none;
     background:#fff;
-    position:absolute;
-    top:0;
+    position:fixed;
+    top:90px;
     left:-100%;
     width:100%;
-    height:100%;
+    height:calc(100vh - 90px);
     justify-content: center;
     align-items: center;
     transition: 0.4s ease;
-    z-index:1000;
-    padding-top: 80px;
+    z-index: 900;
+    padding-top: 10px;
+    flex-direction: column;
+    overflow-y: auto;
 }
 .nav-menu ul {
     list-style: none;
@@ -85,6 +98,12 @@
     display: flex;
     left: 0;
 }
+.nav-menu a {
+    display: block;
+    padding: 10px 16px;
+    line-height: 1.2;
+    margin: 0;
+}
 /*SLIDESHOW*/
 .slideshow{
     position:relative;
@@ -92,6 +111,7 @@
     height:80vh;
     overflow:hidden;
     z-index: 1;
+    padding-top: 100px;
 }
 .slide{
     position:absolute;
@@ -132,4 +152,100 @@
 .slide-text p{
     font-size:18px;
     line-height:1.5;
+}
+/*FOOTER*/
+.footer-container{
+    max-width:1100px;
+    margin:auto;
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    gap:30px;
+    text-align: center;
+    
+}
+
+.footer{
+    background-color:#fff;
+    color:#fff;
+    text-align:center;
+    padding:50px 20px;
+    position:relative;
+    border-top: 1px solid #444;
+    font-family: 'Poppins', sans-serif;
+    align-items: center;
+}
+.footer-left{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 30px;
+    text-align: center;
+    grid-column: 1/4;
+    justify-self: center;
+}
+.footer-logo{
+    width: 60px;
+    margin-top: 40px;
+    height: 60px;
+    margin-right: 10px;
+    border-radius: 20px;
+    transform: scale(1.1);
+    
+}
+.footer-text{
+    margin-top: 5px;
+    font-family: 'inter',system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', sans-serif;
+    flex-direction: column;
+    text-align: center;
+    max-width: 280px;
+    display: block;
+    position: relative;
+    
+}
+.footer-uni{
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+    color:#8f6a06;
+    letter-spacing: 1.5px;
+    font-family: 'inter',system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', sans-serif;
+}
+.footer-society{
+    font-size: 22px;
+    font-weight: 700;
+    margin: 5px 0 20px 0;
+    color:#280550;
+    font-family: 'inter',system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', sans-serif;
+}
+/*contacts*/
+.contact-info{
+    margin: 0;
+    text-align: left;
+    align-items: stretch;
+    font-size: 16px;
+    color:black;
+    margin-top: 50px;
+    font-family: 'inter',system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', sans-serif;
+    grid-column: 1;
+}
+.contact-info h5{
+    margin-bottom: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    color:rgb(35, 42, 48);
+}
+.contact-info p{
+    margin: 6px 0;
+    font-size: 14px;
+    color:black;
+}
+
+/* Footer bottom */
+.footer-bottom {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+    color: black;
+    border-top: 1px solid #97a1a1;
+    padding-top: 20px;
 }
