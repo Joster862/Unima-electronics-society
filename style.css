@@ -30,6 +30,7 @@
     text-transform: uppercase;
     margin: 2px;
     margin-right: auto;
+    flex-grow: 1;
   
 }
 .uni {
@@ -58,6 +59,7 @@
     margin-right: 5px;
     border-radius: 20px;
     transform: scale(1.1);
+    margin-left: -20px;
 }
 
 .navright {
