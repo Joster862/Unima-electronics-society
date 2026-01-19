@@ -23,7 +23,43 @@ document.addEventListener("DOMContentLoaded", function() {
         index = (index + 1) % slides.length;
     }
 
-    setInterval(showSlide, 5000);
+    setInterval(showSlide, 8000);
+});
+
+// Counter animation
+function animateCounter(element) {
+    const target = +element.getAttribute('data-target');
+    const increment = target / 100;
+    let current = 0;
+    const timer = setInterval(() => {
+        current += increment;
+        if (current >= target) {
+            element.textContent = target + '+';
+            clearInterval(timer);
+        } else {
+            element.textContent = Math.floor(current) + '+';
+        }
+    }, 30);
+}
+
+// Intersection Observer for counter
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const counter = entry.target.querySelector('.stat-number');
+            if (counter && !counter.classList.contains('animated')) {
+                counter.classList.add('animated');
+                animateCounter(counter);
+            }
+        }
+    });
+}, { threshold: 0.5 });
+
+document.addEventListener("DOMContentLoaded", function() {
+    const statCard = document.querySelector('.stat-card');
+    if (statCard) {
+        observer.observe(statCard);
+    }
 });
 
 //menu bar toggle
