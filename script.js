@@ -77,3 +77,20 @@ document.addEventListener("DOMContentLoaded", function(){
         }
     });
 });
+//FAQ Accordion
+ const faqQuestions = document.querySelectorAll(".faq-question");
+
+  faqQuestions.forEach(question => {
+    question.addEventListener("click", () => {
+      const answer = question.nextElementSibling;
+      const icon = question.querySelector(".icon");
+
+      if (answer.style.maxHeight) {
+        answer.style.maxHeight = null;
+        icon.textContent = "+";
+      } else {
+        answer.style.maxHeight = answer.scrollHeight + "px";
+        icon.textContent = "−";
+      }
+    });
+});
