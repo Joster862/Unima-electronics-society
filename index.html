@@ -19,19 +19,17 @@
         </div>
         <div class="navright" id="navright">☰</div>
         <ul class="nav-menu" id="navmenu">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">About</a></li>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#about">About</a></li>
             <li><a href="news.html">News</a></li>
-            <li><a href="#">Events</a></li>
-            <li><a href="#">Gallery</a></li>
-            <li><a href="#">Marketplace</a></li>
-            <li><a href="#">Portal</a></li>
-            <li><a href="#">Innovation</a></li>
+            <li><a href="#events">Events</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#innovation">Innovation</a></li>
         </ul>
-            
     </header>
+
     <!--HERO SECTION-->
-    <section class="slideshow">
+    <section class="slideshow" id="home">
         <div class="slide active">
             <div class="image-box">
                 <img src="slide1.jpg" alt="">
@@ -69,8 +67,9 @@
             <button class="register-btn">Register Now</button>
         </div>
     </section>
+
     <!--JOURNEY SECTION-->
-    <section class="journey">
+    <section class="journey" id="about">
         <h2 class="journey-title">Our Journey</h2>
         <div class="journey-container">
             <div class="stat-card">
@@ -93,7 +92,7 @@
     </section>
 
     <!--HIGHLIGHTS SECTION-->
-    <section class="highlights">
+    <section class="highlights" id="events">
         <div class="highlights-text">
             <h2>Call for applications</h2>
             <p>Apply now to be part of our dynamic team and 
@@ -109,183 +108,105 @@
               </div>
         </div>
     </section>
+
     <!--news updates-->
-  <section class="news">
-  <h2>Latest News & Updates</h2>
-
-  <div class="news-grid" id="newsGrid">
-    <!-- News loads automatically -->
-  </div>
-  
-
-  <a href="news.html" class="view-more">View All Updates →</a>
-</section>
-
-
+    <section class="news" id="news">
+        <h2>Latest News & Updates</h2>
+        <div class="news-grid" id="newsGrid">
+            <!-- News loads automatically -->
+        </div>
+        <a href="news.html" class="view-more" style="margin-top: 40px;">View All Updates →</a>
+    </section>
 
     <!--BENEFITS-->
-    <section class="benefits">
-  <h2>Why Join the Electronics Society?</h2>
-
-  <div class="benefits-container">
-    <div class="benefit-card">
-      <div class="benefit-number">1</div>
-      <h3>Practical Skills</h3>
-      <p>
-        Gain hands-on experience in circuit design, microcontrollers, and real-world electronics projects beyond classroom theory.
-      </p>
-    </div>
-
-    <div class="benefit-card">
-      <div class="benefit-number">2</div>
-      <h3>Career Development</h3>
-      <p>
-        Strengthen your CV, prepare for internships, and explore career paths in electronics and technology.
-      </p>
-    </div>
-
-    <div class="benefit-card">
-      <div class="benefit-number">3</div>
-      <h3>Innovation & Creativity</h3>
-      <p>
-        Build innovative solutions and work on projects that solve real-life problems using electronics.
-      </p>
-    </div>
-
-    <div class="benefit-card">
-      <div class="benefit-number">4</div>
-      <h3>Networking & Mentorship</h3>
-      <p>
-        Connect with fellow students, seniors, lecturers, and industry professionals for guidance and opportunities.
-      </p>
-    </div>
-
-    <div class="benefit-card">
-      <div class="benefit-number">5</div>
-      <h3>Teamwork & Leadership</h3>
-      <p>
-        Develop leadership, communication, and teamwork skills through collaborative projects and society roles.
-      </p>
-    </div>
-
-    <div class="benefit-card join-card">
-      <h3>Be Part of 100+ Students Benefiting with Us</h3>
-      <button class="join-btn">Join Us</button>
-    </div>
-  </div>
-</section>
+    <section class="benefits" id="innovation">
+        <h2>Why Join the Electronics Society?</h2>
+        <div class="benefits-container">
+            <div class="benefit-card">
+                <div class="benefit-number">1</div>
+                <h3>Practical Skills</h3>
+                <p>Gain hands-on experience in circuit design, microcontrollers, and real-world electronics projects beyond classroom theory.</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-number">2</div>
+                <h3>Career Development</h3>
+                <p>Strengthen your CV, prepare for internships, and explore career paths in electronics and technology.</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-number">3</div>
+                <h3>Innovation & Creativity</h3>
+                <p>Build innovative solutions and work on projects that solve real-life problems using electronics.</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-number">4</div>
+                <h3>Networking & Mentorship</h3>
+                <p>Connect with fellow students, seniors, lecturers, and industry professionals for guidance and opportunities.</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-number">5</div>
+                <h3>Teamwork & Leadership</h3>
+                <p>Develop leadership, communication, and teamwork skills through collaborative projects and society roles.</p>
+            </div>
+            <div class="benefit-card join-card">
+                <h3>Be Part of 100+ Students Benefiting with Us</h3>
+                <button class="join-btn">Join Us</button>
+            </div>
+        </div>
+    </section>
   
     <!--FAQ-->
     <section class="faq-section">
         <div class="faq-subtitle">FAQ's</div>
         <h2 class="faq-title">Frequently Asked Questions</h2>
         <div class="faq-item">
-            <button class="faq-question">
-                What is the Electronics Society?
-                <span class="icon">+</span>
-            </button>
-            <div class="faq-answer">
-                <p>The Electronics Society is a student-led organization under the Department of Electronics at the University of Malawi,
-                focused on hands-on learning, innovation, and mentorship in electronics.
-                </p>
-            </div>
+            <button class="faq-question">What is the Electronics Society? <span class="icon">+</span></button>
+            <div class="faq-answer"><p>The Electronics Society is a student-led organization under the Department of Electronics at the University of Malawi, focused on hands-on learning, innovation, and mentorship in electronics.</p></div>
         </div>
         <div class="faq-item">
-            <button class="faq-question">
-                Who can join the Electronics Society?
-                <span class="icon">+</span>
-            </button>
-            <div class="faq-answer">
-                <p>
-                    Any UNIMA student interested in electronics, technology, or innovation can join.
-                    No prior experience is required.
-                </p>
-            </div>
+            <button class="faq-question">Who can join the Electronics Society? <span class="icon">+</span></button>
+            <div class="faq-answer"><p>Any UNIMA student interested in electronics, technology, or innovation can join. No prior experience is required.</p></div>
         </div>
         <div class="faq-item">
-            <button class="faq-question">
-                Do I need prior electronics or programming knowledge?
-                <span class="icon">+</span>
-            </button>
-            <div class="faq-answer">
-                <p>
-                    No. The society is beginner-friendly and starts from the basics before moving to advanced topics.
-                </p>
-            </div>
+            <button class="faq-question">Do I need prior electronics or programming knowledge? <span class="icon">+</span></button>
+            <div class="faq-answer"><p>No. The society is beginner-friendly and starts from the basics before moving to advanced topics.</p></div>
         </div>
         <div class="faq-item">
-            <button class="faq-question">
-                What skills will I learn?
-                <span class="icon">+</span>
-            </button>
-            <div class="faq-answer">
-                <p>
-                    Members learn basic electronics, circuit design, microcontrollers (Arduino, ESP),
-                    sensors, and real-world problem solving.
-                </p>
-            </div>
+            <button class="faq-question">What skills will I learn? <span class="icon">+</span></button>
+            <div class="faq-answer"><p>Members learn basic electronics, circuit design, microcontrollers (Arduino, ESP), sensors, and real-world problem solving.</p></div>
         </div>
         <div class="faq-item">
-            <button class="faq-question">
-                How can I join the society?
-                <span class="icon">+</span>
-            </button>
-            <div class="faq-answer">
-                <p>
-                    You can join by registering through the website, attending meetings,
-                    or contacting the society leadership via our official social media channels.
-                </p>
-            </div>
+            <button class="faq-question">How can I join the society? <span class="icon">+</span></button>
+            <div class="faq-answer"><p>You can join by registering through the website, attending meetings, or contacting the society leadership via our official social media channels.</p></div>
         </div>
         <div class="faq-item">
-            <button class="faq-question">
-                Are there any membership fees?
-                <span class="icon">+</span>
-            </button>
-            <div class="faq-answer">
-                <p>
-                    MK2000 membership fee per semister is paid to become a member and support society activities and resources.
-                </p>
-            </div>
+            <button class="faq-question">Are there any membership fees? <span class="icon">+</span></button>
+            <div class="faq-answer"><p>MK2000 membership fee per semister is paid to become a member and support society activities and resources.</p></div>
         </div>
         <div class="faq-item">
-            <button class="faq-question">
-                How do I get updates on events?
-                <span class="icon">+</span>
-            </button>
-            <div class="faq-answer">
-                <p>
-                    Follow us on social media,
-                    or regularly check our website for the latest news and event updates.
-                </p>
-            </div>
+            <button class="faq-question">How do I get updates on events? <span class="icon">+</span></button>
+            <div class="faq-answer"><p>Follow us on social media, or regularly check our website for the latest news and event updates.</p></div>
         </div>
     </section>
     
     <script src="script.js"></script>
     <!--FOOTER SECTION-->
-    
     <footer class="footer">
         <div class="footer-container">
-        <!--LOGO AND NAME LINES-->
-         <div class="footer-left">
-            <img src="IMG_20260113_204416.jpg" alt ="logo" class="footer-logo">
-            <div class="footer-text">
-                <span class="footer-uni">UNIVERSITY OF MALAWI</span><br>
-                <span class="footer-society">ELECTRONICS SOCIETY</span>
+            <div class="footer-left">
+                <img src="IMG_20260113_204416.jpg" alt ="logo" class="footer-logo">
+                <div class="footer-text">
+                    <span class="footer-uni">UNIVERSITY OF MALAWI</span><br>
+                    <span class="footer-society">ELECTRONICS SOCIETY</span>
                 </div>
-         </div>
-        <!--CONTACT INFO-->
-         <div class="contact-info">
-            <h5>Contact Us</h5>
-            <p>info@unima.edu.mw</p>
-            <p>+265 881 060 475</p>
-            <p>University Of Malawi Box 280 Zomba</p>
+            </div>
+            <div class="contact-info">
+                <h5>Contact Us</h5>
+                <p>info@unima.edu.mw</p>
+                <p>+265 881 060 475</p>
+                <p>University Of Malawi Box 280 Zomba</p>
+            </div>
         </div>
-        </div>
-    
-    <p class="footer-bottom">&copy; 2026 Electronics Society. All rights reserved.</p>
-
+        <p class="footer-bottom">&copy; 2026 Electronics Society. All rights reserved.</p>
     </footer>
 </body>
 </html>

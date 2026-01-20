@@ -2,7 +2,6 @@ document.addEventListener("DOMContentLoaded", function() {
     let slides = document.querySelectorAll(".slide");
     let index = 0;
 
-    // Function to set background image for all slides
     function setBackgroundImages() {
         slides.forEach(slide => {
             const img = slide.querySelector(".image-box img");
@@ -14,7 +13,6 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-    // Set background images on load
     setBackgroundImages();
 
     function showSlide(){
@@ -29,7 +27,6 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 
-// Counter animation
 function animateCounter(element) {
     const target = +element.getAttribute('data-target');
     const increment = target / 100;
@@ -45,7 +42,6 @@ function animateCounter(element) {
     }, 30);
 }
 
-// Intersection Observer for counter
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -65,30 +61,23 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 
-//menu bar toggle
 document.addEventListener("DOMContentLoaded", function(){
     const navright = document.getElementById("navright");
     const navmenu = document.getElementById("navmenu");
     if (navright && navmenu) {
         navright.addEventListener("click", function(){
             navmenu.classList.toggle("active");
-            if (navright.textContent === "☰"){
-                navright.textContent = "✖";
-            } else {
-                navright.textContent = "☰";
-            }
+            navright.textContent = navmenu.classList.contains("active") ? "✖" : "☰";
         });
     }
 });
 
-//FAQ Accordion
 document.addEventListener("DOMContentLoaded", function() {
     const faqQuestions = document.querySelectorAll(".faq-question");
     faqQuestions.forEach(question => {
         question.addEventListener("click", () => {
             const answer = question.nextElementSibling;
             const icon = question.querySelector(".icon");
-
             if (answer.style.maxHeight) {
                 answer.style.maxHeight = null;
                 icon.textContent = "+";
@@ -100,10 +89,11 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 
-// News loading logic
 function loadNews(gridId) {
     const grid = document.getElementById(gridId);
     if (!grid) return;
+    
+    const isFullPage = gridId === "fullNewsGrid";
 
     fetch("news.json")
         .then(response => response.json())
@@ -115,7 +105,18 @@ function loadNews(gridId) {
                 card.className = "event-card";
 
                 const isVideo = item.type === "video";
+                const story = isFullPage ? (item["full story"] || item.description) : item.description;
                 
+                // Only "Read More" button on the home page, no button on news page
+                const buttonHtml = !isFullPage ? `<div class="view-more">Read More</div>` : '';
+
+                if (!isFullPage) {
+                    card.style.cursor = "pointer";
+                    card.addEventListener("click", () => {
+                        window.location.href = "news.html";
+                    });
+                }
+
                 card.innerHTML = `
                     <div class="event-image"${!isVideo ? ` style="background-image: url('${item.media}')"` : ''}>
                         ${isVideo ? `<iframe src="${item.media}" style="width:100%; height:100%; border:none;" allowfullscreen></iframe>` : ''}
@@ -123,8 +124,8 @@ function loadNews(gridId) {
                     <div class="event-content">
                         <div class="event-datetime">${item.date}</div>
                         <div class="event-title">${item.title}</div>
-                        <p class="event-description">${item.description}</p>
-                        <div class="view-more">${isVideo ? 'Watch Video' : 'Read More'}</div>
+                        <p class="event-description">${story}</p>
+                        ${buttonHtml}
                     </div>
                 `;
                 grid.appendChild(card);
