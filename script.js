@@ -18,12 +18,15 @@ document.addEventListener("DOMContentLoaded", function() {
     setBackgroundImages();
 
     function showSlide(){
+        if (slides.length === 0) return;
         slides.forEach(slide => slide.classList.remove("active"));
         slides[index].classList.add("active");
         index = (index + 1) % slides.length;
     }
 
-    setInterval(showSlide, 8000);
+    if (slides.length > 0) {
+        setInterval(showSlide, 8000);
+    }
 });
 
 // Counter animation
@@ -66,73 +69,71 @@ document.addEventListener("DOMContentLoaded", function() {
 document.addEventListener("DOMContentLoaded", function(){
     const navright = document.getElementById("navright");
     const navmenu = document.getElementById("navmenu");
-    console.log("JS loaded")
-    navright.addEventListener("click", function(){
-        console.log("Clicked")
-        navmenu.classList.toggle("active");
-        if (navright.textContent === "☰"){
-            navright.textContent = "✖";
-        } else {
-            navright.textContent = "☰";
-        }
-    });
+    if (navright && navmenu) {
+        navright.addEventListener("click", function(){
+            navmenu.classList.toggle("active");
+            if (navright.textContent === "☰"){
+                navright.textContent = "✖";
+            } else {
+                navright.textContent = "☰";
+            }
+        });
+    }
 });
+
 //FAQ Accordion
- const faqQuestions = document.querySelectorAll(".faq-question");
+document.addEventListener("DOMContentLoaded", function() {
+    const faqQuestions = document.querySelectorAll(".faq-question");
+    faqQuestions.forEach(question => {
+        question.addEventListener("click", () => {
+            const answer = question.nextElementSibling;
+            const icon = question.querySelector(".icon");
 
-  faqQuestions.forEach(question => {
-    question.addEventListener("click", () => {
-      const answer = question.nextElementSibling;
-      const icon = question.querySelector(".icon");
-
-      if (answer.style.maxHeight) {
-        answer.style.maxHeight = null;
-        icon.textContent = "+";
-      } else {
-        answer.style.maxHeight = answer.scrollHeight + "px";
-        icon.textContent = "−";
-      }
+            if (answer.style.maxHeight) {
+                answer.style.maxHeight = null;
+                icon.textContent = "+";
+            } else {
+                answer.style.maxHeight = answer.scrollHeight + "px";
+                icon.textContent = "−";
+            }
+        });
     });
 });
-//news updates ticker
-fetch("news.json")
-  .then(response => response.json())
-  .then(news => {
-    
-    const grid= document.getElementById("newsGrid");
 
+// News loading logic
+function loadNews(gridId) {
+    const grid = document.getElementById(gridId);
+    if (!grid) return;
 
-    news.forEach(item => {
-      const card = document.createElement("div");
-      card.className = "news-card";
+    fetch("news.json")
+        .then(response => response.json())
+        .then(news => {
+            news.forEach(item => {
+                if (!item.title || item.title === "") return;
 
-      
+                const card = document.createElement("div");
+                card.className = "event-card";
 
-      if (item.type === "image") {
-        card.innerHTML = `
-          <img src="${item.media}" alt="${item.title}">
-          <div class="news-content">
-            <h3>${item.title}</h3>
-            <span>${item.date}</span>
-            <p>${item.description}</p>
-          </div>
-        `;
-      }
+                const isVideo = item.type === "video";
+                
+                card.innerHTML = `
+                    <div class="event-image"${!isVideo ? ` style="background-image: url('${item.media}')"` : ''}>
+                        ${isVideo ? `<iframe src="${item.media}" style="width:100%; height:100%; border:none;" allowfullscreen></iframe>` : ''}
+                    </div>
+                    <div class="event-content">
+                        <div class="event-datetime">${item.date}</div>
+                        <div class="event-title">${item.title}</div>
+                        <p class="event-description">${item.description}</p>
+                        <div class="view-more">${isVideo ? 'Watch Video' : 'Read More'}</div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        })
+        .catch(error => console.error("Error loading news:", error));
+}
 
-      if (item.type === "video") {
-        card.innerHTML = `
-          <div class="video-wrapper">
-            <iframe src="${item.media}" allowfullscreen></iframe>
-          </div>
-          <div class="news-content">
-            <h3>${item.title}</h3>
-            <span>${item.date}</span>
-            <p>${item.description}</p>
-          </div>
-        `;
-      }
-
-      grid.appendChild(card);
-    });
-  })
-  .catch(error => console.error("Error loading news:", error));
+document.addEventListener("DOMContentLoaded", function() {
+    loadNews("newsGrid");
+    loadNews("fullNewsGrid");
+});
