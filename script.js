@@ -94,3 +94,45 @@ document.addEventListener("DOMContentLoaded", function(){
       }
     });
 });
+//news updates ticker
+fetch("news.json")
+  .then(response => response.json())
+  .then(news => {
+    
+    const grid= document.getElementById("newsGrid");
+
+
+    news.forEach(item => {
+      const card = document.createElement("div");
+      card.className = "news-card";
+
+      
+
+      if (item.type === "image") {
+        card.innerHTML = `
+          <img src="${item.media}" alt="${item.title}">
+          <div class="news-content">
+            <h3>${item.title}</h3>
+            <span>${item.date}</span>
+            <p>${item.description}</p>
+          </div>
+        `;
+      }
+
+      if (item.type === "video") {
+        card.innerHTML = `
+          <div class="video-wrapper">
+            <iframe src="${item.media}" allowfullscreen></iframe>
+          </div>
+          <div class="news-content">
+            <h3>${item.title}</h3>
+            <span>${item.date}</span>
+            <p>${item.description}</p>
+          </div>
+        `;
+      }
+
+      grid.appendChild(card);
+    });
+  })
+  .catch(error => console.error("Error loading news:", error));
