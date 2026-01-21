@@ -138,3 +138,53 @@ document.addEventListener("DOMContentLoaded", function() {
     loadNews("newsGrid");
     loadNews("fullNewsGrid");
 });
+
+// The events loading function would be similar to loadNews, adjusted for events.json and event-specific fields
+function loadEvents(gridId) {
+    const grid = document.getElementById(gridId);
+    if (!grid) return;
+   const isFullPage = gridId === "fullEventsGrid";
+
+    fetch("events.json")
+        .then(response => response.json())
+        .then(events => {
+            events.forEach(item => {
+                if (!item.title || item.title === "") return;
+
+                const card = document.createElement("div");
+                card.className = "event-card";
+
+                const isVideo = item.type === "video";
+                const story = isFullPage ? (item["full story"] || item.description) : item.description;
+                
+                // Only "Read More" button on the home page, no button on events page
+                const buttonHtml = !isFullPage ? `<div class="view-more">Read More</div>` : '';
+
+                if (!isFullPage) {
+                    card.style.cursor = "pointer";
+                    card.addEventListener("click", () => {
+                        window.location.href = "events.html";
+                    });
+                }
+
+                card.innerHTML = `
+                    <div class="event-image"${!isVideo ? ` style="background-image: url('${item.media}')"` : ''}>
+                        ${isVideo ? `<iframe src="${item.media}" style="width:100%; height:100%; border:none;" allowfullscreen></iframe>` : ''}
+                    </div>
+                    <div class="event-content">
+                        <div class="event-datetime">${item.date}</div>
+                        <div class="event-title">${item.title}</div>
+                        <p class="event-description">${story}</p>
+                        ${buttonHtml}
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        })
+        .catch(error => console.error("Error loading events:", error));
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+    loadEvents("eventsGrid");
+    loadEvents("fullEventsGrid"); 
+});
