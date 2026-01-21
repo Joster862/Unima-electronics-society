@@ -98,7 +98,8 @@ function loadNews(gridId) {
     fetch("news.json")
         .then(response => response.json())
         .then(news => {
-            news.forEach(item => {
+            const displayNews = isFullPage ? news : news.slice(0, 1);
+            displayNews.forEach(item => {
                 if (!item.title || item.title === "") return;
 
                 const card = document.createElement("div");
@@ -107,7 +108,6 @@ function loadNews(gridId) {
                 const isVideo = item.type === "video";
                 const story = isFullPage ? (item["full story"] || item.description) : item.description;
                 
-                // Only "Read More" button on the home page, no button on news page
                 const buttonHtml = !isFullPage ? `<div class="view-more">Read More</div>` : '';
 
                 if (!isFullPage) {
@@ -139,16 +139,16 @@ document.addEventListener("DOMContentLoaded", function() {
     loadNews("fullNewsGrid");
 });
 
-// The events loading function would be similar to loadNews, adjusted for events.json and event-specific fields
 function loadEvents(gridId) {
     const grid = document.getElementById(gridId);
     if (!grid) return;
-   const isFullPage = gridId === "fullEventsGrid";
+   const isFullPage = gridId === "fulleventsGrid";
 
     fetch("events.json")
         .then(response => response.json())
         .then(events => {
-            events.forEach(item => {
+            const displayEvents = isFullPage ? events : events.slice(0, 1);
+            displayEvents.forEach(item => {
                 if (!item.title || item.title === "") return;
 
                 const card = document.createElement("div");
@@ -157,7 +157,6 @@ function loadEvents(gridId) {
                 const isVideo = item.type === "video";
                 const story = isFullPage ? (item["full story"] || item.description) : item.description;
                 
-                // Only "Read More" button on the home page, no button on events page
                 const buttonHtml = !isFullPage ? `<div class="view-more">Read More</div>` : '';
 
                 if (!isFullPage) {
@@ -186,5 +185,5 @@ function loadEvents(gridId) {
 
 document.addEventListener("DOMContentLoaded", function() {
     loadEvents("eventsGrid");
-    loadEvents("fullEventsGrid"); 
+    loadEvents("fulleventsGrid"); 
 });
