@@ -577,11 +577,40 @@
 
 /* Event content */
 .event-content {
-    padding: 20px;
+    padding: 30px;
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 20px;
     flex-grow: 1;
+}
+
+/* Event description/story */
+.event-description {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #444;
+    white-space: pre-wrap;
+    text-align: justify;
+}
+
+.event-description a {
+    color: #8f6a06;
+    text-decoration: underline;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.event-description a:hover {
+    color: #280550;
+}
+
+.news-grid .event-card {
+    max-width: 900px;
+    margin: 0 auto 40px auto;
+}
+
+.news-grid .event-image {
+    height: 400px;
 }
 
 /* Date and time */
