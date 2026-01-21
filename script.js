@@ -106,14 +106,23 @@ function loadNews(gridId) {
                 card.className = "event-card";
 
                 const isVideo = item.type === "video";
+                // Function to convert URLs to active links
+                function linkify(text) {
+                    const urlRegex = /(https?:\/\/[^\s]+)/g;
+                    return text.replace(urlRegex, function(url) {
+                        return '<a href="' + url + '" target="_blank">' + url + '</a>';
+                    });
+                }
+
                 const story = isFullPage ? (item["full story"] || item.description) : item.description;
+                const formattedStory = isFullPage ? linkify(story).replace(/\n/g, '<br>') : story;
                 
                 const buttonHtml = !isFullPage ? `<div class="view-more">Read More</div>` : '';
 
                 if (!isFullPage) {
                     card.style.cursor = "pointer";
                     card.addEventListener("click", () => {
-                        window.location.href = "news.html";
+                        window.location.href = isNews ? "news.html" : "events.html";
                     });
                 }
 
@@ -124,7 +133,7 @@ function loadNews(gridId) {
                     <div class="event-content">
                         <div class="event-datetime">${item.date}</div>
                         <div class="event-title">${item.title}</div>
-                        <p class="event-description">${story}</p>
+                        <p class="event-description">${formattedStory}</p>
                         ${buttonHtml}
                     </div>
                 `;
@@ -142,7 +151,7 @@ document.addEventListener("DOMContentLoaded", function() {
 function loadEvents(gridId) {
     const grid = document.getElementById(gridId);
     if (!grid) return;
-   const isFullPage = gridId === "fulleventsGrid";
+    const isFullPage = gridId === "fulleventsGrid";
 
     fetch("events.json")
         .then(response => response.json())
@@ -155,7 +164,18 @@ function loadEvents(gridId) {
                 card.className = "event-card";
 
                 const isVideo = item.type === "video";
+                
+                // Function to convert URLs to active links
+                function linkify(text) {
+                    if (!text) return "";
+                    const urlRegex = /(https?:\/\/[^\s]+)/g;
+                    return text.replace(urlRegex, function(url) {
+                        return '<a href="' + url + '" target="_blank">' + url + '</a>';
+                    });
+                }
+
                 const story = isFullPage ? (item["full story"] || item.description) : item.description;
+                const formattedStory = isFullPage ? linkify(story).replace(/\n/g, '<br>') : story;
                 
                 const buttonHtml = !isFullPage ? `<div class="view-more">Read More</div>` : '';
 
@@ -173,7 +193,7 @@ function loadEvents(gridId) {
                     <div class="event-content">
                         <div class="event-datetime">${item.date}</div>
                         <div class="event-title">${item.title}</div>
-                        <p class="event-description">${story}</p>
+                        <p class="event-description">${formattedStory}</p>
                         ${buttonHtml}
                     </div>
                 `;
